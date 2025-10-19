@@ -52,9 +52,9 @@ class Semaine2 extends Program {
 
         for (int idx = 1; idx <= size; idx++) {
             for (int j = 1; j <= size; j++) {
-                int r = (((red + stepR * idx) % 255) + 255) % 255;
-                int g = (((green + stepG * idx) % 255) + 255) % 255;
-                int b = (((blue + stepB * idx) % 255) + 255) % 255;
+                int r = ((red + stepR * idx) % 255);
+                int g = ((green + stepG * idx) % 255);
+                int b = ((blue + stepB * idx) % 255);
 
                 image += toString(r) + toString(g) + toString(b);
             }
@@ -65,15 +65,14 @@ class Semaine2 extends Program {
 
     void show(String image) {
         int size = size(image);
-        String red = "";
-        String green = "";
-        String blue = "";
 
         for (int line = 0; line < size; line++) {
             for (int column = 0; column < size; column++) {
-                red = substring(get(image, line, column), 0, 3);
-                green = substring(get(image, line, column), 3, 6);
-                blue = substring(get(image, line, column), 6, 9);
+                String get = get(image, line, column);
+                
+                String red = substring(get, 0, 3);
+                String green = substring(get, 3, 6);
+                String blue = substring(get, 6, 9);
 
                 print(rgb(primaryColorToInt(red), primaryColorToInt(green), primaryColorToInt(blue), false) + " ");
             }
