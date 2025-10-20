@@ -4,6 +4,8 @@ class Semaine2 extends Program {
     final int GREEN  = 1;
     final int BLUE   = 2;
 
+    // Semaine 1:
+
     int charToInt(char digit) {
         int resultat = (char) (digit-'0');
 
@@ -20,6 +22,20 @@ class Semaine2 extends Program {
         return resultat;
     }
 
+    int primaryColorIndex(int primaryColor) {
+        return primaryColor * 3;
+    }
+
+    int get(String color, int primaryColor) {
+        String stockage = "";
+        int resultat = 0;
+
+        stockage = substring(color, primaryColorIndex(primaryColor), primaryColorIndex(primaryColor) + 3);
+        resultat = primaryColorToInt(stockage);
+
+        return resultat;
+    }
+
     String toString(int primaryColor) {
         String resultat = "";
         String stockage = "" + primaryColor;
@@ -32,6 +48,8 @@ class Semaine2 extends Program {
 
         return resultat;
     }
+
+    // Semaine 2:
 
     int size(String image) {
         int resultat = length(image) / 9;
@@ -50,13 +68,13 @@ class Semaine2 extends Program {
     String generate(int size, int red, int green, int blue, int stepR, int stepG, int stepB) {
         String image = "";
 
-        for (int idx = 1; idx <= size; idx++) {
-            for (int j = 1; j <= size; j++) {
-                int r = ((red + stepR * idx) % 255);
-                int g = ((green + stepG * idx) % 255);
-                int b = ((blue + stepB * idx) % 255);
+        for (int line = 1; line <= size; line++) {
+            red = (red + stepR) % 255;
+            green = (green + stepG) % 255;
+            blue = (blue + stepB) % 255;
 
-                image += toString(r) + toString(g) + toString(b);
+            for (int column = 1; column <= size; column++) {
+                image += toString(red) + toString(green) + toString(blue);
             }
         }
 
@@ -68,13 +86,13 @@ class Semaine2 extends Program {
 
         for (int line = 0; line < size; line++) {
             for (int column = 0; column < size; column++) {
-                String get = get(image, line, column);
+                String pixel = get(image, line, column);
                 
-                String red = substring(get, 0, 3);
-                String green = substring(get, 3, 6);
-                String blue = substring(get, 6, 9);
+                int red = get(pixel, RED);
+                int green = get(pixel, GREEN);
+                int blue = get(pixel, BLUE);
 
-                print(rgb(primaryColorToInt(red), primaryColorToInt(green), primaryColorToInt(blue), false) + " ");
+                print(rgb(red, green, blue, false) + " ");
             }
             println(RESET);
         }
