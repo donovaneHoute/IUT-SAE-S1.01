@@ -1,56 +1,5 @@
 class Semaine2 extends Program {
-
-    final int RED    = 0;
-    final int GREEN  = 1;
-    final int BLUE   = 2;
-
-    // Semaine 1:
-
-    int charToInt(char digit) {
-        int resultat = (char) (digit-'0');
-
-        return resultat;
-    }
-
-    int primaryColorToInt(String primaryColor) {
-        int resultat = 0;
-
-        for (int idx = 0; idx < length(primaryColor); idx++) {
-            resultat = resultat * 10 + charToInt(charAt(primaryColor, idx));
-        }
-
-        return resultat;
-    }
-
-    int primaryColorIndex(int primaryColor) {
-        return primaryColor * 3;
-    }
-
-    int get(String color, int primaryColor) {
-        String stockage = "";
-        int resultat = 0;
-
-        stockage = substring(color, primaryColorIndex(primaryColor), primaryColorIndex(primaryColor) + 3);
-        resultat = primaryColorToInt(stockage);
-
-        return resultat;
-    }
-
-    String toString(int primaryColor) {
-        String resultat = "";
-        String stockage = "" + primaryColor;
-
-        for (int idx = length(stockage); idx < 3; idx++) {
-            resultat += "0";
-        }
-
-        resultat += stockage;
-
-        return resultat;
-    }
-
-    // Semaine 2:
-
+    
     int size(String image) {
         int resultat = length(image) / 9;
         return sqrt(resultat);
